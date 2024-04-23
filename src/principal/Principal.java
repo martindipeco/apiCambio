@@ -31,8 +31,8 @@ public class Principal {
                 //Comprar
                 case "1":
                     String eleccionMoneda;
-                    String monedaOrigen;
-                    String monedaDestino;
+                    String monedaOrigen="";
+                    String monedaDestino="";
                     Double tasaConversion;
                     String eleccionMonto;
                     do {
@@ -46,283 +46,82 @@ public class Principal {
                         System.out.println("x: atrás");
 
                         eleccionMoneda = scanner.nextLine().toLowerCase();
-
+                        boolean convertir = true;
                         switch (eleccionMoneda)
                         {
                             case "1":
                                 System.out.println("ARS a USD");
                                 monedaOrigen = "ARS";
                                 monedaDestino = "USD";
-
-                                //TODO: refactorizar!
-                                tasaConversion = transaccion.obtenerTasa(monedaOrigen, monedaDestino);
-                                System.out.println("La tasa de conversión de " + monedaOrigen + " a " + monedaDestino + " es: "
-                                        + tasaConversion);
-
-                                while(true)
-                                {
-                                    System.out.println("Ingrese el monto a convertir o 'x' para volver atrás");
-                                    eleccionMonto = scanner.nextLine();
-                                    if (eleccionMonto.equalsIgnoreCase("x"))
-                                    {
-                                        System.out.println("Volviendo atrás");
-                                        break;
-                                    }
-                                    try
-                                    {
-                                        double montoOrigen = Double.parseDouble(eleccionMonto);
-                                        if(montoOrigen >= 0)
-                                        {
-                                            Transaccion miTransaccion =
-                                                    new Transaccion(monedaOrigen, monedaDestino, montoOrigen, tasaConversion);
-                                            usuario.agregarTransaccion(miTransaccion);
-                                            System.out.println("Se ha realizado la operación: ");
-                                            System.out.println(miTransaccion);
-                                            System.out.println("Presione cualquier tecla para continuar");
-                                            scanner.nextLine();
-                                            break;
-                                        }
-                                        else
-                                        {
-                                            System.out.println("Ingrese un monto válido");
-                                        }
-                                    }
-                                    catch (NumberFormatException e)
-                                    {
-                                        System.out.println("Ingrese un número válido o 'x' para salir");
-                                    }
-                                }
                                 break;
                             case "2":
                                 System.out.println("USD a ARS");
                                 monedaOrigen = "USD";
                                 monedaDestino = "ARS";
-
-                                //TODO: refactorizar!
-                                tasaConversion = transaccion.obtenerTasa(monedaOrigen, monedaDestino);
-                                System.out.println("La tasa de conversión de " + monedaOrigen + " a " + monedaDestino + " es: "
-                                        + tasaConversion);
-
-                                while(true)
-                                {
-                                    System.out.println("Ingrese el monto a convertir o 'x' para volver atrás");
-                                    eleccionMonto = scanner.nextLine();
-                                    if (eleccionMonto.equalsIgnoreCase("x"))
-                                    {
-                                        System.out.println("Volviendo atrás");
-                                        break;
-                                    }
-                                    try
-                                    {
-                                        double montoOrigen = Double.parseDouble(eleccionMonto);
-                                        if(montoOrigen >= 0)
-                                        {
-                                            Transaccion miTransaccion =
-                                                    new Transaccion(monedaOrigen, monedaDestino, montoOrigen, tasaConversion);
-                                            usuario.agregarTransaccion(miTransaccion);
-                                            System.out.println("Se ha realizado la operación");
-                                            System.out.println(miTransaccion);
-                                            System.out.println("Presione cualquier tecla para continuar");
-                                            scanner.nextLine();
-                                            break;
-                                        }
-                                        else
-                                        {
-                                            System.out.println("Ingrese un monto válido");
-                                        }
-                                    }
-                                    catch (NumberFormatException e)
-                                    {
-                                        System.out.println("Ingrese un número válido o 'x' para salir");
-                                    }
-                                }
-
                                 break;
                             case "3":
                                 System.out.println("BRL a USD");
                                 monedaOrigen = "BRL";
                                 monedaDestino = "USD";
-
-                                //TODO: refactorizar!
-                                tasaConversion = transaccion.obtenerTasa(monedaOrigen, monedaDestino);
-                                System.out.println("La tasa de conversión de " + monedaOrigen + " a " + monedaDestino + " es: "
-                                        + tasaConversion);
-
-                                while(true)
-                                {
-                                    System.out.println("Ingrese el monto a convertir o 'x' para volver atrás");
-                                    eleccionMonto = scanner.nextLine();
-                                    if (eleccionMonto.equalsIgnoreCase("x"))
-                                    {
-                                        System.out.println("Volviendo atrás");
-                                        break;
-                                    }
-                                    try
-                                    {
-                                        double montoOrigen = Double.parseDouble(eleccionMonto);
-                                        if(montoOrigen >= 0)
-                                        {
-                                            Transaccion miTransaccion =
-                                                    new Transaccion(monedaOrigen, monedaDestino, montoOrigen, tasaConversion);
-                                            usuario.agregarTransaccion(miTransaccion);
-                                            System.out.println("Se ha realizado la operación");
-                                            System.out.println(miTransaccion);
-                                            System.out.println("Presione cualquier tecla para continuar");
-                                            scanner.nextLine();
-                                            break;
-                                        }
-                                        else
-                                        {
-                                            System.out.println("Ingrese un monto válido");
-                                        }
-                                    }
-                                    catch (NumberFormatException e)
-                                    {
-                                        System.out.println("Ingrese un número válido o 'x' para salir");
-                                    }
-                                }
-
                                 break;
                             case "4":
                                 System.out.println("USD a BRL");
                                 monedaOrigen = "USD";
                                 monedaDestino = "BRL";
-
-                                //TODO: refactorizar!
-                                tasaConversion = transaccion.obtenerTasa(monedaOrigen, monedaDestino);
-                                System.out.println("La tasa de conversión de " + monedaOrigen + " a " + monedaDestino + " es: "
-                                        + tasaConversion);
-
-                                while(true)
-                                {
-                                    System.out.println("Ingrese el monto a convertir o 'x' para volver atrás");
-                                    eleccionMonto = scanner.nextLine();
-                                    if (eleccionMonto.equalsIgnoreCase("x"))
-                                    {
-                                        System.out.println("Volviendo atrás");
-                                        break;
-                                    }
-                                    try
-                                    {
-                                        double montoOrigen = Double.parseDouble(eleccionMonto);
-                                        if(montoOrigen >= 0)
-                                        {
-                                            Transaccion miTransaccion =
-                                                    new Transaccion(monedaOrigen, monedaDestino, montoOrigen, tasaConversion);
-                                            usuario.agregarTransaccion(miTransaccion);
-                                            System.out.println("Se ha realizado la operación");
-                                            System.out.println(miTransaccion);
-                                            System.out.println("Presione cualquier tecla para continuar");
-                                            scanner.nextLine();
-                                            break;
-                                        }
-                                        else
-                                        {
-                                            System.out.println("Ingrese un monto válido");
-                                        }
-                                    }
-                                    catch (NumberFormatException e)
-                                    {
-                                        System.out.println("Ingrese un número válido o 'x' para salir");
-                                    }
-                                }
-
                                 break;
                             case "5":
                                 System.out.println("COP a USD");
                                 monedaOrigen = "COP";
                                 monedaDestino = "USD";
-
-                                //TODO: refactorizar!
-                                tasaConversion = transaccion.obtenerTasa(monedaOrigen, monedaDestino);
-                                System.out.println("La tasa de conversión de " + monedaOrigen + " a " + monedaDestino + " es: "
-                                        + tasaConversion);
-
-                                while(true)
-                                {
-                                    System.out.println("Ingrese el monto a convertir o 'x' para volver atrás");
-                                    eleccionMonto = scanner.nextLine();
-                                    if (eleccionMonto.equalsIgnoreCase("x"))
-                                    {
-                                        System.out.println("Volviendo atrás");
-                                        break;
-                                    }
-                                    try
-                                    {
-                                        double montoOrigen = Double.parseDouble(eleccionMonto);
-                                        if(montoOrigen >= 0)
-                                        {
-                                            Transaccion miTransaccion =
-                                                    new Transaccion(monedaOrigen, monedaDestino, montoOrigen, tasaConversion);
-                                            usuario.agregarTransaccion(miTransaccion);
-                                            System.out.println("Se ha realizado la operación");
-                                            System.out.println(miTransaccion);
-                                            System.out.println("Presione cualquier tecla para continuar");
-                                            scanner.nextLine();
-                                            break;
-                                        }
-                                        else
-                                        {
-                                            System.out.println("Ingrese un monto válido");
-                                        }
-                                    }
-                                    catch (NumberFormatException e)
-                                    {
-                                        System.out.println("Ingrese un número válido o 'x' para salir");
-                                    }
-                                }
-
                                 break;
                             case "6":
                                 System.out.println("USD a COP");
                                 monedaOrigen = "COP";
                                 monedaDestino = "USD";
-
-                                //TODO: refactorizar!
-                                tasaConversion = transaccion.obtenerTasa(monedaOrigen, monedaDestino);
-                                System.out.println("La tasa de conversión de " + monedaOrigen + " a " + monedaDestino + " es: "
-                                        + tasaConversion);
-
-                                while(true)
-                                {
-                                    System.out.println("Ingrese el monto a convertir o 'x' para volver atrás");
-                                    eleccionMonto = scanner.nextLine();
-                                    if (eleccionMonto.equalsIgnoreCase("x"))
-                                    {
-                                        System.out.println("Volviendo atrás");
-                                        break;
-                                    }
-                                    try
-                                    {
-                                        double montoOrigen = Double.parseDouble(eleccionMonto);
-                                        if(montoOrigen >= 0)
-                                        {
-                                            Transaccion miTransaccion =
-                                                    new Transaccion(monedaOrigen, monedaDestino, montoOrigen, tasaConversion);
-                                            usuario.agregarTransaccion(miTransaccion);
-                                            System.out.println("Se ha realizado la operación");
-                                            System.out.println(miTransaccion);
-                                            System.out.println("Presione cualquier tecla para continuar");
-                                            scanner.nextLine();
-                                            break;
-                                        }
-                                        else
-                                        {
-                                            System.out.println("Ingrese un monto válido");
-                                        }
-                                    }
-                                    catch (NumberFormatException e)
-                                    {
-                                        System.out.println("Ingrese un número válido o 'x' para salir");
-                                    }
-                                }
-
                                 break;
                             case "x":
+                                convertir = false;
                                 System.out.println("Volviendo atrás");
                                 break;
                             default:
+                                convertir = false;
                                 System.out.println("Por favor ingrese una opción válida");
+                        }
+                        if (convertir)
+                        {
+                            tasaConversion = transaccion.obtenerTasa(monedaOrigen, monedaDestino);
+                            System.out.println("La tasa de conversión de " + monedaOrigen + " a " + monedaDestino + " es: "
+                                    + tasaConversion);
+                            System.out.println("Ingrese el monto a convertir o 'x' para volver atrás");
+                            eleccionMonto = scanner.nextLine();
+                            if (eleccionMonto.equalsIgnoreCase("x"))
+                            {
+                                System.out.println("Volviendo atrás");
+                                break;
+                            }
+                            try
+                            {
+                                double montoOrigen = Double.parseDouble(eleccionMonto);
+                                if(montoOrigen >= 0)
+                                {
+                                    Transaccion miTransaccion =
+                                            new Transaccion(monedaOrigen, monedaDestino, montoOrigen, tasaConversion);
+                                    usuario.agregarTransaccion(miTransaccion);
+                                    System.out.println("Se ha realizado la operación: ");
+                                    System.out.println(miTransaccion);
+                                    System.out.println("Presione cualquier tecla para continuar");
+                                    scanner.nextLine();
+                                    break;
+                                }
+                                else
+                                {
+                                    System.out.println("Ingrese un monto válido");
+                                }
+                            }
+                            catch (NumberFormatException e)
+                            {
+                                System.out.println("Ingrese un número válido o 'x' para salir");
+                            }
                         }
                     }
                     while (!"x".equalsIgnoreCase(eleccionMoneda));
