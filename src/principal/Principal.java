@@ -76,8 +76,8 @@ public class Principal {
                                 break;
                             case "6":
                                 System.out.println("USD a COP");
-                                monedaOrigen = "COP";
-                                monedaDestino = "USD";
+                                monedaOrigen = "USD";
+                                monedaDestino = "COP";
                                 break;
                             case "x":
                                 convertir = false;
@@ -130,9 +130,10 @@ public class Principal {
                 //Historial
                 case "2":
                     System.out.println("Vemos el historial");
-                    usuario.mostrarLista();
                     String eleccionOrden;
                     do {
+                        usuario.mostrarLista();
+
                         System.out.println("1: Ordenar por Fecha más próxima");
                         System.out.println("2: Ordenar por Fecha más antigua");
                         System.out.println("3: Ordenar por Monto Moneda Origen");
