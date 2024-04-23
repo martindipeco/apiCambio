@@ -2,6 +2,7 @@ package modelo;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import excepcion.ErrorNAException;
 
 import java.io.IOException;
 import java.net.URI;
@@ -75,7 +76,27 @@ public class Transaccion {
         JsonObject jsonObject = new Gson().fromJson(json, JsonObject.class);
 
         // Get the value of "conversion_rate"
-        double tasaConversion = jsonObject.get("conversion_rate").getAsDouble();
+        double tasaConversion = 0;
+        try {
+            tasaConversion = jsonObject.get("conversion_rate").getAsDouble();
+
+        }
+        catch (NumberFormatException e)
+        {
+            System.out.println("No fue posible convertir a dato numérico");
+            System.out.println(e.getMessage());
+            String tasaString = jsonObject.get("conversion_rate").getAsString();
+            if (tasaString.contains("N/A"))
+            {
+                throw new ErrorNAException("No se pudo convertir por que apareció N/A ");
+            }
+        }
+
+        catch (ErrorNAException e)
+        {
+            System.out.println(e.getMessage());
+        }
+
         return tasaConversion;
     }
 
